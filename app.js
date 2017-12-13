@@ -4,29 +4,23 @@ var App = () => (
   </div>
 )
 
-var GroceryList = (list) => (
+class GroceryListItem extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <li>{this.props.item}</li>
+    );
+  }
+}
+
+var GroceryList = (props) => (
   <ul>
-    {/* list.forEach(item =>{
-      return <li> {item} </li>
-    }) */}
-    <li> {list.item[0]} </li>
-    <li> {list.item[1]} </li>
-    <li> {list.item[2]} </li>
-    <li> {list.item[3]} </li>
+    {props.items.map(item =>
+      <GroceryListItem item = {item}/>
+    )}
   </ul>
 );
 
-var listItem = (item) => (
-  <li>{item}</li>
-);
-
-var Chicken = () => (
-  <li>Chicken</li>
-);
-
-var Eggs = () => (
-  <li>Eggs</li>
-)
-
-// Use these two new components inside your GroceryList component instead of the hardcoded <li>s
-ReactDOM.render(<GroceryList item={['milk', 'eggs', 'cheese', 'butter']}/>, document.getElementById("app"));
+ReactDOM.render(<GroceryList items={['milk', 'eggs', 'cheese', 'butter']}/>, document.getElementById("app"));
